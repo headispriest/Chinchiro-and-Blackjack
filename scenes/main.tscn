@@ -1,18 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://sfaydu63bjn0"]
+[gd_scene load_steps=5 format=3 uid="uid://sfaydu63bjn0"]
 
 [ext_resource type="PackedScene" uid="uid://bu5q5uy342qlm" path="res://scenes/Dice.tscn" id="1_8a5jx"]
 [ext_resource type="Script" path="res://scripts/boyar.gd" id="1_c8jtp"]
+[ext_resource type="Script" path="res://scenes/DiceHandler.gd" id="2_tm77r"]
+[ext_resource type="Script" path="res://scenes/UIHandler.gd" id="4_4ner4"]
 
 [node name="GameBoyar" type="Node2D"]
 script = ExtResource("1_c8jtp")
+RollButtonPath = NodePath("Control/RollButton")
 
-[node name="Dice" parent="." instance=ExtResource("1_8a5jx")]
+[node name="DiceHandler" type="Node" parent="."]
+script = ExtResource("2_tm77r")
+
+[node name="Dice" parent="DiceHandler" instance=ExtResource("1_8a5jx")]
 position = Vector2(64, 64)
 
-[node name="Dice2" parent="." instance=ExtResource("1_8a5jx")]
+[node name="Dice2" parent="DiceHandler" instance=ExtResource("1_8a5jx")]
 position = Vector2(144, 64)
 
-[node name="Dice3" parent="." instance=ExtResource("1_8a5jx")]
+[node name="Dice3" parent="DiceHandler" instance=ExtResource("1_8a5jx")]
 position = Vector2(224, 64)
 
 [node name="Control" type="Control" parent="."]
@@ -20,6 +26,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("4_4ner4")
 
 [node name="RollButton" type="Button" parent="Control"]
 layout_mode = 0
@@ -48,7 +55,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TurnLabel" type="Label" parent="Control"]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="StrikesLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 282.0
+offset_top = 4.0
+offset_right = 343.0
+offset_bottom = 48.0
+
+[node name="WCLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 207.0
+offset_right = 237.0
+offset_bottom = 242.0
 
 [connection signal="button_down" from="Control/RollButton" to="." method="_on_roll_button_button_down"]

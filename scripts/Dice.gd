@@ -14,5 +14,4 @@ func dice_roll():
 		frame = face
 		await get_tree().create_timer(log(i/2+0.7)+0.5).timeout
 	final = face+1
-	print(final)
 	dice_finished.emit()
