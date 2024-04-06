@@ -12,6 +12,6 @@ func dice_roll():
 	for i in range(1, 6):
 		face = randi_range(0, 5)
 		frame = face
-		await get_tree().create_timer(log(i/2+0.7)+0.5).timeout
+		await get_tree().create_timer(log(i/2.0+0.7)+0.5).timeout
 	final = face+1
 	dice_finished.emit()
